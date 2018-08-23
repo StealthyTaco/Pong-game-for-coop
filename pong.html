@@ -11,22 +11,24 @@ sjs.open("target",500,400);
 
 var ball = new sjs.Image("Images/Creepy Face.gif");
 
-ball.type = "ball"; ball.setSize(100,100);
-ball.right();
+ball.type = "ball"; ball.setSize(50,50);
+ball.center();
 ball.pushRight(3);
 ball.pushUp(4);
 ball.bounce();
-ball.friction = 0;
+ball.friction = 0
+ // end start
 
-sjs.open
+//Paddle 1
+var paddle1 = new sjs.Image("Images/paddle.png"); 
+paddle1.centerH();
+paddle1.setSize(100,20);
 
-var paddle = new sjs.Image("Images/green.png");
-
-paddle.type = 'paddle'; 
-paddle.moveTo(0,150);
-paddle.setSize(20,100);
-paddle.right();
-} // end start
+//Paddle 2
+var paddle2 = new sjs.Image("Images/paddle2.png"); 
+paddle2.type = "paddle";
+paddle2.center().bottom(); 
+paddle2.setSize(100,20);}
 
 </script> 
 </head> 
