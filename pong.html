@@ -3,10 +3,29 @@
 <head>
     <title> Pong </title>
     <script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+</head>
+
+<body onload='start()' ; style=background-color:darkmagenta>
+
+    <h1>Pong Game</h1>
+    <div id="target" style="margin:auto;background:grey;"></div>
+    <div id="restart"></div>
+
+
+
     <script> 
 
         function start() {
             sjs.open("target", 500, 400);
+
+            var game_text = new sjs.Text("Hit my face to get points", 20, "black");
+            game_text.centerH().offset(0, 30);
+
+            var startBtn = new sjs.Button("Restart", function () {
+                window.location = "pong.html";
+            });
+
+            startBtn.center();
 
             //ball object and properties
 
@@ -14,8 +33,8 @@
 
             ball.type = "ball"; ball.setSize(50, 50);
             ball.center();
-            ball.pushRight(3);
-            ball.pushUp(4);
+            ball.pushLeft(6);
+            ball.pushUp(7);
             ball.bounce();
             ball.friction = 0
             // end start
@@ -42,19 +61,23 @@
                 paddle2.pushRight();
             });
 
+            var score = 0;
+            var score_txt = new sjs.Text("Score: 0", 21, "black");
+
             sjs.onHit("ball", "paddle", function (ball, paddle) {
+                score = score + 1;
+                score_txt.setText("Score: " + score);
                 sjs.bounceOff(ball, paddle);
             });
 
+            sjs.onHit("ball", ["top_screen", "bottom_screen"], function () {
+                window.location = "gameover.html";
+            });
+
         }
+        //Score
 
     </script>
-</head>
-
-<body onload='start()' ; style=background-color:darkmagenta>
-
-    <h1>Pong Game</h1>
-    <div id="target" style="margin:auto;background:grey;"></div>
 
 </body>
 
